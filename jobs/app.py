@@ -18,7 +18,7 @@ def execute_sql (sql, values=(), commit=False, single=False):
     if commit = True:
         results = connection.commit()
     else:
-        results = cursor.fetchnone() if single else cursor.fetchall()
+        results = cursor.fetchone() if single else cursor.fetchall()
 
     cursor.close()
     return results
@@ -28,7 +28,7 @@ def clode_connection(exception):
     connection = getattr(g, '_connection', None)
     if connection is not None:
         connection.close()
-                
+
 @app.route('/')
 @app.route('/jobs')
 def jobs():
